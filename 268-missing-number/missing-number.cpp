@@ -8,6 +8,6 @@ public:
             }
         }
 
-        return -1;   // This line is never reached for valid input.
+        return -1;   
     }
 };
