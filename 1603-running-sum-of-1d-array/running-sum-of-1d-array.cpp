@@ -4,7 +4,7 @@ public:
     vector<int> runningSum(vector<int>& nums) {
         vector<int> array;
         int add=0;
-        int number=0;
+        
         for(int i =0 ; i<nums.size(); i++){
             if(i==0){
                 add=nums[i];
