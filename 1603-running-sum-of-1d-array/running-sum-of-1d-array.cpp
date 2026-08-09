@@ -3,14 +3,21 @@ public:
 
     vector<int> runningSum(vector<int>& nums) {
         vector<int> array;
-        
+        int add=0;
+        int number=0;
         for(int i =0 ; i<nums.size(); i++){
-            int add=0;
-            for(int j=0 ; j<=i; j++){
-                add=add+nums[j];
+            if(i==0){
+                add=nums[i];
+                array.push_back(nums[i]);
             }
-            array.push_back(add);
+            else{
+                add=add+nums[i];
+                
+
+                array.push_back(add);
         }
-        return array;
+    
     }
+    return array;
+}
 };
