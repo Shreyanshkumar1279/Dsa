@@ -1,54 +1,45 @@
 class Solution {
 public:
-
-    bool includes(unordered_map<char,int>& freq1,
-                  unordered_map<char,int>& freq2) {
-
-        for (auto& kv : freq2) {
-
-            if (freq1[kv.first] < kv.second) {
-                return false;
-            }
-
-        }
-
-        return true;
-    }
-
     string minWindow(string s, string t) {
 
-        if (t.size() > s.size()) {
-            return "";
-        }
-
-        unordered_map<char,int> freq1;
-        unordered_map<char,int> freq2;
+        vector<int> need(128, 0);
 
         for (char c : t) {
-            freq2[c]++;
+            need[c]++;
         }
 
-        int l = 0;
+        int left = 0;
+        int count = t.size();
 
         int minLength = INT_MAX;
         int start = 0;
 
-        for (int r = 0; r < s.size(); r++) {
+        for (int right = 0; right < s.size(); right++) {
 
-            freq1[s[r]]++;
+            // Current character required hai
+            if (need[s[right]] > 0) {
+                count--;
+            }
 
-            while (includes(freq1, freq2)) {
+            need[s[right]]--;
 
-                // Current window valid hai
-                // Pehle answer check karo
-                if (r - l + 1 < minLength) {
-                    minLength = r - l + 1;
-                    start = l;
+            // Window valid ho gayi
+            while (count == 0) {
+
+                // Minimum window update
+                if (right - left + 1 < minLength) {
+                    minLength = right - left + 1;
+                    start = left;
                 }
 
-                // Ab window shrink karo
-                freq1[s[l]]--;
-                l++;
+                // Left character remove karo
+                need[s[left]]++;
+
+                if (need[s[left]] > 0) {
+                    count++;
+                }
+
+                left++;
             }
         }
 
