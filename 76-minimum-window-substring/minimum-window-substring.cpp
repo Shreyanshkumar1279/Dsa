@@ -2,41 +2,42 @@ class Solution {
 public:
     string minWindow(string s, string t) {
 
-        vector<int> need(128, 0);
+        unordered_map<char, int> need;
+        unordered_map<char, int> window;
 
         for (char c : t) {
             need[c]++;
         }
 
         int left = 0;
-        int count = t.size();
+        int required = need.size();
+        int formed = 0;
 
         int minLength = INT_MAX;
         int start = 0;
 
         for (int right = 0; right < s.size(); right++) {
 
-            // Current character required hai
-            if (need[s[right]] > 0) {
-                count--;
+            char c = s[right];
+            window[c]++;
+
+            if (need.count(c) && window[c] == need[c]) {
+                formed++;
             }
 
-            need[s[right]]--;
+            while (formed == required) {
 
-            // Window valid ho gayi
-            while (count == 0) {
-
-                // Minimum window update
                 if (right - left + 1 < minLength) {
                     minLength = right - left + 1;
                     start = left;
                 }
 
-                // Left character remove karo
-                need[s[left]]++;
+                char remove = s[left];
+                window[remove]--;
 
-                if (need[s[left]] > 0) {
-                    count++;
+                if (need.count(remove) &&
+                    window[remove] < need[remove]) {
+                    formed--;
                 }
 
                 left++;
