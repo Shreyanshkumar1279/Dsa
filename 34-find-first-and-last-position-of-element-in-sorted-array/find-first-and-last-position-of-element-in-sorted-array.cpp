@@ -5,7 +5,6 @@ public:
         int first = -1;
         int second = -1;
 
-        // Find first occurrence
         int l = 0;
         int r = nums.size() - 1;
 
@@ -25,7 +24,7 @@ public:
             }
         }
 
-        // Find last occurrence
+        
         l = 0;
         r = nums.size() - 1;
 
