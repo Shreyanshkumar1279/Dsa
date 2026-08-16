@@ -11,7 +11,7 @@ public:
                 return mid;
             }
 
-            // Left half is sorted
+            
             if (nums[l] <= nums[mid]) {
 
                 if (nums[l] <= target && target < nums[mid]) {
@@ -22,7 +22,7 @@ public:
                 }
             }
 
-            // Right half is sorted
+            
             else {
 
                 if (nums[mid] < target && target <= nums[r]) {
