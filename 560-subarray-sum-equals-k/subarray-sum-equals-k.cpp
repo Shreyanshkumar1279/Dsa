@@ -12,7 +12,7 @@ public:
             sum += x;
 
             if (freq.count(sum - k)) {
-                ans += freq[sum - k];
+             ans += freq[sum - k];
             }
 
             freq[sum]++;
