@@ -4,9 +4,10 @@ public:
         unordered_map<int,int>g;
         g[0]=-1;
         int sum=0;
+        int rem=0;
         for(int i=0; i<nums.size();i++){
             sum+=nums[i];
-            int rem=sum%k;
+            rem=sum%k;
             if(g.count(rem)){
                 if(i-g[rem]>=2){
                     return true;
